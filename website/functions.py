@@ -152,13 +152,8 @@ def parse_API_recipe_details(complex_data):
 
         elif ingredient['unitShort'] == 'g':
             ingredient_dict['unit'] = "g"
-            amount = (round((ingredient['amount'] * 0.45359237 * 1000) / 10)) * 10
+            amount = (round((ingredient['amount']) / 10)) * 10
             ingredient_dict['amount'] = amount
-
-        # elif ingredient['unitShort'] == 'cup':
-        #     ingredient_dict['unit'] = "ml"
-        #     amount = (round((ingredient['amount'] * 236.5882365)/10)) * 10
-        #     ingredient_dict['amount'] = amount
 
         missed_ingredients.append(ingredient_dict)
     recipe_data['missing_ingredients'] = missed_ingredients

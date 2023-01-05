@@ -4,6 +4,7 @@ from os import path
 from flask_login import LoginManager
 from jinja2 import StrictUndefined
 
+
 db = SQLAlchemy()
 DB_NAME = "database.db"
 

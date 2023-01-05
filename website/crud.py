@@ -4,6 +4,7 @@ Create, Read, Update, Delete."""
 from .models import db, User, Saved_Recipe, Recipe, Recipe_Ingredient, Instructions, Equipment, Missing_Ingredient
 
 
+
 # ***** User class crud functions *****
 
 def create_user(email, password, number):

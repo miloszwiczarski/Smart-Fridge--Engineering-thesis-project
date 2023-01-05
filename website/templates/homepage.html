@@ -11,7 +11,7 @@
                 <h1>Smart Fridge </h1><br><h4>No ingredient left behind</h4></div>
         </div>
         <div class="row">
-            <div class="homepage-title homepage col"><h1 class="homepage-title"> Welcome! What's in your fridge? </h1>
+            <div class="homepage-title homepage col"><h1 class="homepage-title"> Welcome! What's in your fridge?  </h1>
             </div>
         </div>
         <div class="row">
@@ -41,11 +41,6 @@
                                value="min-missing-ingredients"/>
                         <a id="sort-text">Min missing ingredients</a>
                     </div>
-
-                    {#                        <input class="toggle search-btn btn btn-primary" type="checkbox"/>#}
-                    {#                        <button type='button' class="search-btn btn btn-primary">gluten_free</button>#}
-                    {#                        <button type='button' class="search-btn btn btn-primary">test3</button>#}
-                    {#                    </div>#}
                 </form>
             </div>
             <br>
@@ -83,32 +78,32 @@
                                         <form action="{{ url_for('views.register') }}" class="create-account-form"
                                               method="post">
                                             <h4> Create a new account to start saving recipes! </h4>
-                                                                <label><img
-                                                                        src="{{ url_for('static', filename='img/letter.png') }}"
-                                                                        height="25" width="25"> Email:</label>
-                                                                {{ register_form.email(class="email form-control", id='email-register') }}
-                                                                <br>
-                                                                <label><img
-                                                                        src="{{ url_for('static', filename='img/phone.png') }}"
-                                                                        height="25" width="25"> Phone:</label>
-                                                                {{ register_form.number(class="phone form-control", id='number-register') }}
+                                            <label><img
+                                                    src="{{ url_for('static', filename='img/letter.png') }}"
+                                                    height="25" width="25"> Email:</label>
+                                            {{ register_form.email(class="email form-control", id='email-register') }}
+                                            <br>
+                                            <label><img
+                                                    src="{{ url_for('static', filename='img/phone.png') }}"
+                                                    height="25" width="25"> Phone:</label>
+                                            {{ register_form.number(class="phone form-control", id='number-register') }}
 
-                                                                <br>
-                                                                <label><img
-                                                                        src="{{ url_for('static', filename='img/lock.png') }}"
-                                                                        height="25" width="25"> Password:</label>
-                                                                {{ register_form.password(class="password form-control", id='password-register') }}
+                                            <br>
+                                            <label><img
+                                                    src="{{ url_for('static', filename='img/lock.png') }}"
+                                                    height="25" width="25"> Password:</label>
+                                            {{ register_form.password(class="password form-control", id='password-register') }}
 
-                                                                <br>
-                                                                <label><img
-                                                                        src="{{ url_for('static', filename='img/lock.png') }}"
-                                                                        height="25" width="25"> Confirm password:</label>
-                                                                {{ register_form.confirm_password(class="password form-control", id='confirm-password-register') }}
+                                            <br>
+                                            <label><img
+                                                    src="{{ url_for('static', filename='img/lock.png') }}"
+                                                    height="25" width="25"> Confirm password:</label>
+                                            {{ register_form.confirm_password(class="password form-control", id='confirm-password-register') }}
 
-                                                                <br>
+                                            <br>
 
-                                                                {{ register_form.submit(class="create-account-btn btn btn-success") }}
-                                                                {{ login_form.csrf_token }}
+                                            {{ register_form.submit(class="create-account-btn btn btn-success") }}
+                                            {{ login_form.csrf_token }}
                                         </form>
                                     </div>
                                 </div>

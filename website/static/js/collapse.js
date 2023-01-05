@@ -1,9 +1,5 @@
 const register = document.getElementById('register-collapse');
 const login = document.getElementById('login-collapse');
-const about = document.getElementById('about-collapse-id')
-const rest = document.getElementById('rest-collapse-id')
-const photo = document.getElementById("photo-collapse-id")
-const photoButton = document.getElementById("photo-button")
 const searchParameters = document.getElementById("search-parameters-collapse")
 const searchCollapseButton = document.getElementById('search-collapse-button')
 

@@ -286,12 +286,6 @@ def add_recipe_to_db():
         add_recipe_missing_ingredient(recipe=recipe_id, ingredient_id=ingredient_id, amount=amount, unit=unit,
                                       name=name)
 
-    # for i, instruction in enumerate(recipe_details['instructions']):
-    #     # set step_num by adding 1 to indices
-    #     step_num = i + 1
-    #     step_instruction = instruction
-    #     add_instructions(recipe=recipe_id, step_num=step_num, step_instruction=step_instruction)
-
     # add each instructions step and string to db
     try:
         for i, instruction in enumerate(recipe_details['instructions']):
@@ -392,7 +386,6 @@ def saved_recipes():
 
     recipes = [get_saved_recipe(x) for x in saved_ids]
 
-    # recipes = []
     for x in saved_ids:
         recipe = get_saved_recipe(x)
 
@@ -420,8 +413,7 @@ def send_to_phone():
                 i += 1
             except Exception as e:
                 print(str(e))
-            # except Exception as e:
-            # flash(e, "error")
+
         print(shop_list)
 
         # Test number
@@ -434,6 +426,6 @@ def send_to_phone():
         if response == 'success':
             flash("Successfully sent an SMS with the shopping list to your phone number!", "success")
             return '<script>document.location.href = document.referrer</script>'
-        # document.referrer
+
         else:
             return jsonify({"error": response})

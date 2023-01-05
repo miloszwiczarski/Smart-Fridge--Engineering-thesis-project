@@ -10,7 +10,7 @@ $(document).on('submit', '#login-form', function (e) {
         success: function () {
             document.location.reload();
         }
-    })
+    } )
 });
 
 $(document).on('submit', '#create-account-form', function (e) {

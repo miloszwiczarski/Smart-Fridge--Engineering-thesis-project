@@ -4,7 +4,6 @@ from wtforms.validators import DataRequired, URL, Length, Email
 from flask_ckeditor import CKEditorField
 
 
-
 class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired()], render_kw={"placeholder": "email@email.com"})
     password = PasswordField("Password", validators=[DataRequired(), Length(min=5)], render_kw={"placeholder": "password"})

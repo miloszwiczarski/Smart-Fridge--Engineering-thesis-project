@@ -45,7 +45,7 @@
                                 </div>
 
                             <div class="row" style="margin-bottom:20px">
-                                <h4 class="recipe-info">Ready in: {{ recipe.ready_mins }} mins</h4>
+                                <h4 class="recipe-info">Ready in: {{ recipe.ready_mins }} mins </h4>
                             </div>
                         </div>
                         <div class="save-recipe">
@@ -54,32 +54,6 @@
                                     class="search-btn btn btn-primary">
                                 <img src="{{ url_for('static', filename='img/trash.png') }}" height='50' width='50'/>
                             </button>
-                        </div>
-                        <div class="to-remove-test">
-                            {#                             const removeRecipe = () => {#}
-                            {#    fetch('/api/remove_recipe', {#}
-                            {#      method: 'POST',#}
-                            {#      body: JSON.stringify({recipe_id: props.recipeId}),#}
-                            {#      headers: {'Content-Type': 'application/json'},#}
-                            {#      credentials: 'include'#}
-                            {#    })#}
-                            {#    .then(props.handleRemove);#}
-                            {#  }#}
-                            {##}
-                            {#  const handleClick = () => {#}
-                            {#    if (window.confirm('Are you sure you want to remove this recipe?')) {#}
-                            {#      removeRecipe();#}
-                            {#    }#}
-                            {#  };#}
-                            {##}
-                            {#  return (#}
-                            {#    <Button className='remove-btn' onClick={handleClick}> #}
-                            {#      <img src="https://img.icons8.com/cotton/256/000000/trash.png"#}
-                            {#           height='40'#}
-                            {#           width='40'/>#}
-                            {#    </Button>#}
-                            {#    );#}
-                            {#}#}
                         </div>
                     </div>
                 </div>
