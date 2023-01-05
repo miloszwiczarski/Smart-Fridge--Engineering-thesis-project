@@ -83,22 +83,32 @@
                                         <form action="{{ url_for('views.register') }}" class="create-account-form"
                                               method="post">
                                             <h4> Create a new account to start saving recipes! </h4>
-                                            <label><img src="{{ url_for('static', filename='img/letter.png') }}"
-                                                        height="25" width="25"> Email:</label>
-                                            {{ register_form.email(class="email form-control") }}
-                                            <br>
-                                            <label><img src="{{ url_for('static', filename='img/lock.png') }}"
-                                                        height="25" width="25"> Password:</label>
-                                            {{ register_form.password(class="password form-control") }}
+                                                                <label><img
+                                                                        src="{{ url_for('static', filename='img/letter.png') }}"
+                                                                        height="25" width="25"> Email:</label>
+                                                                {{ register_form.email(class="email form-control", id='email-register') }}
+                                                                <br>
+                                                                <label><img
+                                                                        src="{{ url_for('static', filename='img/phone.png') }}"
+                                                                        height="25" width="25"> Phone:</label>
+                                                                {{ register_form.number(class="phone form-control", id='number-register') }}
 
-                                            <br>
-                                            <label><img src="{{ url_for('static', filename='img/phone.png') }}"
-                                                        height="25" width="25"> Phone:</label>
-                                            {{ register_form.number(class="phone form-control") }}
+                                                                <br>
+                                                                <label><img
+                                                                        src="{{ url_for('static', filename='img/lock.png') }}"
+                                                                        height="25" width="25"> Password:</label>
+                                                                {{ register_form.password(class="password form-control", id='password-register') }}
 
-                                            <br>
-                                            {{ register_form.submit(class="create-account-btn btn btn-success") }}
-                                            {{ login_form.csrf_token }}
+                                                                <br>
+                                                                <label><img
+                                                                        src="{{ url_for('static', filename='img/lock.png') }}"
+                                                                        height="25" width="25"> Confirm password:</label>
+                                                                {{ register_form.confirm_password(class="password form-control", id='confirm-password-register') }}
+
+                                                                <br>
+
+                                                                {{ register_form.submit(class="create-account-btn btn btn-success") }}
+                                                                {{ login_form.csrf_token }}
                                         </form>
                                     </div>
                                 </div>
