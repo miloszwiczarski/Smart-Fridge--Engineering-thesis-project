@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          rel="stylesheet">
+
+    <!--Font Awsome-->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/ba28d9c1c2.js"></script>
+
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&family=Roboto:wght@500&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+    <title>
+        {% block title %} TITLE GOES HERE {% endblock %}
+    </title>
+</head>
+
+<body>
+
+
+{#{% if section %}#}
+{#<script>#}
+{#    $(function() {#}
+{#       $("html, body").animate({ scrollTop: $("#{{ section }}").offset().top }, 500);#}
+{#    });#}
+{#</script>#}
+{#{% endif %}#}
+
+<div class="content-wrapper">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand navbar-light">
+        <div class="navbar-nav">
+            <a class="navbar-brand" href="{{ url_for('views.home') }}">
+                <img src="{{ url_for('static', filename='img/fridge_logo.png') }}" width="35" height="35"
+                     class="d-inline-block align-top" id="fridge-logo"> Smart Fridge</a>
+            <button class="btn navbar-toggler" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+                    aria-label="Toggle navigation" data-bs-target="#navbarTogglerDemo01" data-bs-toggle="collapse"
+                    type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav">
+                    <li class="navbar-item navbar-home-button">
+                        <a class="nav-link" href="{{ url_for('views.home') }}">Home</a>
+                    </li>
+                    <li class=navbar-item>
+                        <a class="nav-link collapsible" href="{{ url_for('views.about') }}">About</a>
+                    </li>
+
+                    <div class="navbar-nav">
+                        {% if current_user.is_authenticated %}
+                            <li class=navbar-item>
+                                <a class="nav-link" href="{{ url_for("views.saved_recipes") }}">Saved recipes</a>
+                            </li>
+                            <li class=navbar-item>
+                                <form id="logout-form" action="{{ url_for('views.logout') }}" method="POST">
+                                    <button style="border: 0; background: none;" type="submit" id="logout"
+                                            class="nav-link">Logout ({{ current_user.email }})
+                                    </button>
+                                </form>
+                            </li>
+                        {% endif %}
+                        {% if current_user.is_anonymous %}
+                            <li class=navbar-item>
+                                <a class="nav-link" data-bs-toggle="collapse" onclick="openLogin()" role="button"
+                                   aria-expanded="false" aria-controls="login-collapse">Login</a>
+                                <div class="collapse fade" id="login-collapse">
+                                    <div class="fade modal-backdrop show" id="modal-backdrop"></div>
+                                    <div id='login-box-collapse' role="dialog" aria-modal="true" class="fade modal show"
+                                         tabindex="-1" style="display: block; padding-left: 0;">
+                                        <div class="modal-dialog" id="modal-dialog">
+                                            <div class="modal-content" id="login-box-collapse">
+                                                <div class="modal-header" id="modal-header">
+                                                    Log In to Access All The Yummy Features!
+                                                    <button id='myLink' type="button" class="btn-close"
+                                                            aria-label="Close" data-bs-toggle="collapse"
+                                                            data-bs-target="#login-collapse"
+                                                            aria-expanded="true"
+                                                            aria-controls="login-collapse"></button>
+                                                </div>
+                                                <div class="modal-body" id="modal-body">
+                                                    <div class="login" style="display: block;">
+
+                                                        <form id='login-form' class="login-form"
+                                                              action="{{ url_for('views.login') }}" method="post">
+                                                            <h3> Log in to see your saved recipes! </h3>
+                                                            <br>
+                                                            <label><img
+                                                                    src="{{ url_for('static', filename='img/letter.png') }}"
+                                                                    height="25" width="25">Email:</label>
+                                                            {{ login_form.email(class="email form-control", id='email-login') }}
+                                                            <br>
+                                                            <label><img
+                                                                    src="{{ url_for('static', filename='img/lock.png') }}"
+                                                                    height="25" width="25"> Password:</label>
+                                                            {{ login_form.password(class="password form-control", id='password-login') }}
+                                                            <br>
+                                                            {{ login_form.submit(class='login-btn btn btn-success') }}
+                                                            {{ login_form.csrf_token }}
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer" id="modal-footer">New user?
+                                                    <button id='test-login' type="button" class="btn btn-link"
+                                                            onclick="toRegister()">Create account
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class=navbar-item>
+                                <a class="nav-link" data-bs-toggle="collapse" onclick="openRegister()" role="button"
+                                   aria-expanded="false" aria-controls="register-collapse">New User</a>
+                                <div class="collapse fade" id="register-collapse">
+                                    <div class="fade modal-backdrop show"></div>
+                                    <div id='register-box-collapse' role="dialog" aria-modal="true"
+                                         class="fade modal show" tabindex="-1"
+                                         style="display: block; padding-left: 0;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    Log In to Access All The Yummy Features!
+                                                    <button type="button" class="btn-close" aria-label="Close"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="#register-collapse" aria-expanded="true"
+                                                            aria-controls="register-collapse"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
+                                                        <div class="create-account">
+                                                            <form id='create-account-form' class="create-account-form"
+                                                                  action="{{ url_for('views.register') }}" method="post">
+                                                                <h4> Create a new account to start saving recipes! </h4>
+                                                                <label><img
+                                                                        src="{{ url_for('static', filename='img/letter.png') }}"
+                                                                        height="25" width="25"> Email:</label>
+                                                                {{ register_form.email(class="email form-control", id='email-register') }}
+                                                                <br>
+                                                                <label><img
+                                                                        src="{{ url_for('static', filename='img/phone.png') }}"
+                                                                        height="25" width="25"> Phone:</label>
+                                                                {{ register_form.number(class="phone form-control", id='number-register') }}
+
+                                                                <br>
+                                                                <label><img
+                                                                        src="{{ url_for('static', filename='img/lock.png') }}"
+                                                                        height="25" width="25"> Password:</label>
+                                                                {{ register_form.password(class="password form-control", id='password-register') }}
+
+                                                                <br>
+                                                                <label><img
+                                                                        src="{{ url_for('static', filename='img/lock.png') }}"
+                                                                        height="25" width="25"> Confirm password:</label>
+                                                                {{ register_form.confirm_password(class="password form-control", id='confirm-password-register') }}
+
+                                                                <br>
+
+                                                                {{ register_form.submit(class="create-account-btn btn btn-success") }}
+                                                                {{ login_form.csrf_token }}
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">Have an account?
+                                                    <button type="button" class="btn btn-link" onclick="toLogin()">Log
+                                                        in
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endif %}
+                    </div>
+                    <div class="navbar-search navbar-nav navbar-search-bar">
+                        <div class="search-bar">
+                            <form action="{{ url_for('views.search_recipe') }}" method="post">
+                                <input name="ingredients" id="ingredients" placeholder="e.g. beef, potato" type="text"
+                                       class="search-bar form-control navbar-search-input">
+                                <button type="submit" id='nav-search-button' class="search-btn btn btn-primary">Let's
+                                    get cookin!
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+                <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% elif category == 'success' %}
+                <div class="alert alert-success alert-dismissible show fade" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% elif category == 'neutral' %}
+                <div class="alert alert-secondary alert-dismissible show fade" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endwith %}
+    {% block content %} BODY CONTENT GOES HERE {% endblock %}
+
+</div>
+
+<!-- Footer-->
+<footer class="tagline footer">
+    <h5 class="tagline">
+        <img src="https://img.icons8.com/cotton/64/000000/fridge.png" width="35" height="35">
+        Home to your family of ingredients. Family means no ingredient left behind or forgotten. </h5>
+</footer>
+
+<!-- Bootstrap core JS-->
+<script crossorigin="anonymous" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/collapse.js"></script>
+<script src="/static/js/authentication.js" type="text/javascript"></script>
+{#<script>#}
+{#    if (window.history.replaceState) {#}
+{#        window.history.replaceState(null, null, window.location.href);#}
+{#    }#}
+{#</script>#}
+</body>
+
+</html>

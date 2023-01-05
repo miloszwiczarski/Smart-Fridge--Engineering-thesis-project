@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <body>
+    <div id="popup-box">
+        <h1>This is a Popup Box!</h1>
+    </div>
+    <button id="open-popup-button">Open Popup Box</button>
+    <script>
+        // Get the popup box and button elements
+        var popupBox = document.getElementById("popup-box");
+        var openButton = document.getElementById("open-popup-button");
+
+        // When the button is clicked, show the popup box
+        openButton.addEventListener("click", function (e) {
+            // Show the popup box
+            popupBox.style.display = "block";
+
+            // Set the position of the popup box to be in the center of the screen
+            popupBox.style.top = "50%";
+            popupBox.style.left = "50%";
+            popupBox.style.transform = "translate(-50%, -50%)";
+
+            if (e.target.id !== 'popup-box' && !popupBox.getElementById('popup-box').contains(e.target)) {
+                popupBox.getElementById('popup-box').style.display = 'none';
+            }
+        });
+
+    </script>
+
+{% endblock %}
+
+
+
+...javascript script in html file button that create popup box div in the center of page and closes it with the same button
+
+
+<!-- HTML for the page -->
+<html>
+  <head>
+    <title>Popup Box Example</title>
+  </head>
+  <body>
+    <div id="popup-box">
+      <h1>This is a Popup Box!</h1>
+    </div>
+    <button id="popup-button">Open/Close Popup Box</button>
+    <script>
+      // Get the popup box and button elements
+      var popupBox = document.getElementById("popup-box");
+      var popupButton = document.getElementById("popup-button");
+
+      // When the button is clicked, show or hide the popup box
+      popupButton.addEventListener("click", function() {
+        if (popupBox.style.display === "block") {
+          // If the popup box is already showing, hide it
+          popupBox.style.display = "none";
+        } else {
+          // If the popup box is hidden, show it
+          popupBox.style.display = "block";
+
+          // Set the position of the popup box to be in the center of the screen
+          popupBox.style.top = "50%";
+          popupBox.style.left = "50%";
+          popupBox.style.transform = "translate(-50%, -50%)";
+        }
+      });
+    </script>
+  </body>
+</html>

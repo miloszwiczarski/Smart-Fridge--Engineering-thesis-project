@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %} Smart Fridge {% endblock %}
+
+{% block content %}
+    <div class="container search-results saved-container">
+    <div class="container-fluid search-container">
+    {% if not recipes %}
+        <div style='margin: 200px 0;' class="no-recipes">
+        <h1>There are no saved recipes yet!</h1>
+    <button onclick="window.location.href='{{ url_for('views.home') }}'" class="no-recipes-button search-btn btn btn-primary">Click here to go back to home!</button>
+        </div>
+
+    {% endif %}
+        <div class="row">
+            {% for recipe in recipes %}
+                    <div class="col-12 col-md-6 col-lg-4 search-row">
+                    <div class="card card-deck search-results">
+                        <img class="card-img-top clickable" src="{{ recipe['image'] }}"
+                             onclick="window.location.href='{{ url_for('views.to_add_recipe',todo="toView" , id=recipe['recipe_id']) }}'">
+                        <div class="between"></div>
+                        <h2 class="recipe-title clickable"
+                            onclick="window.location.href='{{ url_for('views.to_add_recipe',todo="toView" , id=recipe['recipe_id']) }}'">{{ recipe['title'] }}</h2>
+                        <div class="between"></div>
+                        <div class="recipe-all-info">
+                            <div class="row">
+                                <h4 class="recipe-info">Servings: {{ recipe.servings }}</h4>
+                            </div>
+
+                            <div class="row" style="margin: 12px 12px">
+                                    <h4 class="recipe-info">Veggie:
+                                        {% if recipe.vegetarian == True %}
+                                        Yes
+                                        {% else %}
+                                        No
+                                        {% endif %}
+                                    </h4>
+                                    <h4 class="recipe-info">Gluten:
+                                    {% if recipe.gluten_free == True %}
+                                        Free
+                                        {% else %}
+                                        Exists
+                                        {% endif %}
+                                    </h4>
+                                </div>
+
+                            <div class="row" style="margin-bottom:20px">
+                                <h4 class="recipe-info">Ready in: {{ recipe.ready_mins }} mins</h4>
+                            </div>
+                        </div>
+                        <div class="save-recipe">
+                          
+                            <button onclick="window.location.href='{{ url_for('views.remove_saved_recipe', id=recipe.recipe_id) }}'"
+                                    class="search-btn btn btn-primary">
+                                <img src="{{ url_for('static', filename='img/trash.png') }}" height='50' width='50'/>
+                            </button>
+                        </div>
+                        <div class="to-remove-test">
+                            {#                             const removeRecipe = () => {#}
+                            {#    fetch('/api/remove_recipe', {#}
+                            {#      method: 'POST',#}
+                            {#      body: JSON.stringify({recipe_id: props.recipeId}),#}
+                            {#      headers: {'Content-Type': 'application/json'},#}
+                            {#      credentials: 'include'#}
+                            {#    })#}
+                            {#    .then(props.handleRemove);#}
+                            {#  }#}
+                            {##}
+                            {#  const handleClick = () => {#}
+                            {#    if (window.confirm('Are you sure you want to remove this recipe?')) {#}
+                            {#      removeRecipe();#}
+                            {#    }#}
+                            {#  };#}
+                            {##}
+                            {#  return (#}
+                            {#    <Button className='remove-btn' onClick={handleClick}> #}
+                            {#      <img src="https://img.icons8.com/cotton/256/000000/trash.png"#}
+                            {#           height='40'#}
+                            {#           width='40'/>#}
+                            {#    </Button>#}
+                            {#    );#}
+                            {#}#}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+{% endblock %}
+

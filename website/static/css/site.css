@@ -1,0 +1,622 @@
+html, body {
+    background: #F7FBFC;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+body {
+    font-size: 1.1rem;
+    background: url(/static/img/ingredient-bg.jpg) center center / cover no-repeat;
+}
+
+#root {
+    position: relative;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    padding-bottom: 4rem;
+}
+
+.navbar {
+    justify-content: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.nav-link {
+    margin-top: 3px;
+    white-space: nowrap
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
+    color: #f4f9f4;
+    text-align: center;
+
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: #8aae92;
+}
+
+.navbar-brand {
+    padding-top: 11px;
+}
+
+.navbar-search .search-bar {
+    display: flex;
+    white-space: nowrap;
+    margin: 3px 3px 3px 10px;
+}
+
+.navbar-search .search-bar .btn {
+    width: 250px;
+}
+
+.container {
+    text-align: center;
+    margin: 30px auto;
+    background: rgba(244, 249, 244, 0.65);
+    max-width: 960px;
+    border-radius: 25px;
+    color: #403f48;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer {
+    bottom: 0;
+    height: 4rem;
+    width: 100%;
+    text-align: center;
+    color: #f4f9f4;
+}
+
+label, h1, h2, h3, h4, h5, h6 {
+    display: block;
+    margin: 5px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.search-results, .saved-recipes {
+    max-width: 1140px;
+}
+
+#fridge-logo {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 2px;
+}
+
+.form-control:focus {
+    color: #403f48;
+    border-color: #8aae92;
+    box-shadow: 0 0 0 0.2rem rgba(64, 63, 72, 0.6)
+}
+
+
+.btn {
+    background-color: #8aae92;
+    color: #403f48;
+    border-color: #8aae92;
+    margin: 5px 5px;
+    vertical-align: unset;
+}
+
+.btn:hover {
+    color: #f4f9f4;
+    background-color: #8aae92;
+    border-color: #403f48;
+}
+
+.btn:focus {
+    color: #f4f9f4;
+    background-color: #8aae92;
+    border-color: #403f48;
+    box-shadow: 0 0 0 0.2rem rgba(64, 63, 72, 0.6);
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    box-shadow: 0 0 0 0.2rem rgba(64, 63, 72, 0.6);
+}
+
+
+.hidden {
+    display: none;
+    transition: all 1s ease-in-out;
+}
+
+.visible {
+    display: block;
+    transition: all 1s ease-in-out;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+    color: #f4f9f4;
+    background-color: #8aae92;
+    border-color: #403f48;
+}
+
+.card-deck {
+    display: block;
+}
+
+.card-deck .card {
+    width: 350px;
+    margin: 5px 5px;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 20px;
+
+}
+
+.card-img {
+    border-radius: 20px;
+}
+
+.card-img-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.clickable:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #8aae92;
+}
+
+.saved-recipes-btn-container, .search-results-btn-container, .homepage-search {
+    display: inline-block;
+}
+
+
+.homepage, .logout {
+    margin: 30px 30px;
+}
+
+/*.about{*/
+/*    margin: 30px;*/
+/*}*/
+
+/*USUNAC PO ZROBUIENIU DONE*/
+
+
+.about-logo {
+    margin: 30px 30px 25px 30px;
+}
+
+.about-row {
+    margin: 20px 30px 40px 30px;
+
+}
+
+.homepage-search .search-bar {
+    width: 60%;
+    display: inline;
+
+
+}
+
+.login, .create-account {
+    display: block;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    margin: auto auto;
+    background-color: #616161;
+    color: #f4f9f4;
+}
+
+.email, .password, .phone {
+    width: 250px;
+    display: inline-block;
+}
+
+.details {
+    margin: 15px 15px;
+}
+
+.details-row {
+    padding: 0 75px;
+}
+
+.img-times-servings {
+    width: 30%;
+    padding: 15px 15px;
+    margin: 15px auto;
+}
+
+.static-img {
+
+    margin-bottom: 5px;
+}
+
+.ingr-equip {
+    padding: 15px 15px;
+}
+
+.details-title {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.missing-or-thoughts {
+    padding: 15px 15px;
+    border: 1.5px solid black;
+    border-radius: 20px;
+    height: fit-content;
+}
+
+.missing-list {
+    text-align: left;
+}
+
+.recipe-ingredients ul, .recipe-instructions ol, .recipe-equipment ul {
+    text-align: left;
+    display: inline-block;
+}
+
+.ingr-equip {
+    text-align: left;
+    padding: 15px 15px 15px 50px;
+}
+
+.instructions-col {
+    padding: 15px 15px;
+}
+
+.time {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px 5px;
+    width: 140px;
+}
+
+.ready-time {
+    width: 170px;
+    text-align: center;
+}
+
+.servings {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px 5px;
+    width: 125px;
+}
+
+p.comment, .thoughts {
+    margin-bottom: 5px;
+}
+
+.stars .btn-primary:not(:disabled):not(.disabled).active, .stars .btn-primary:not(:disabled):not(.disabled):active, .stars .show > .btn-primary.dropdown-toggle {
+    color: yellow;
+}
+
+.modal-open {
+    text-align: center;
+}
+
+.contact.row {
+    justify-content: center;
+    margin: 5px;
+}
+
+#popup-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+/* Add some styling to the visible background */
+#visible-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Hide the visible background and popup box by default */
+#visible-bg,
+#popup-box {
+    display: none;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+.collapse-box {
+    width: 30%;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, .3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .4);
+    display: none;
+}
+
+#nav-search-button {
+    margin: 3px 3px;
+    width: 45%;
+    border-radius: 0.25rem;
+}
+
+#ingredients {
+    display: inline;
+    width: 70%;
+    border-radius: 0.25rem;
+}
+
+.alert {
+    margin: 0 1%;
+}
+
+.search-row {
+    padding: 15px 5px 10px;
+}
+
+.card {
+    border-radius: 25px;
+    border: 0px;
+}
+
+.search-container {
+    padding: 15px 25px;
+}
+
+.between {
+    height: 1.6rem;
+}
+
+.recipe-title {
+    padding: 5px 5px 20px 5px;
+    height: 10rem;
+    display: flex;
+    margin: 0 20px;
+    align-items: center;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    justify-content: center;
+
+}
+
+.recipe-info {
+    font-size: 1.2rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 3px 12px;
+    width: fit-content;
+    height: fit-content;
+    margin: auto auto;
+}
+
+.missing-ingredients-container {
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 0px 60px 30px 0;
+}
+
+.recipe-all-info {
+    margin-bottom: 50px;
+}
+
+.ingredient-container {
+    text-align: left;
+    padding: 7% 0 0 14%;
+}
+
+.ingredient-list {
+    padding: 2px;
+}
+
+.send-to-phone {
+    padding-left: 17%;
+}
+
+.missing-ingredients-list {
+    text-align: left;
+    padding: 2px;
+}
+
+#missing-ingredients-label {
+    margin: 0;
+}
+
+div#search-parameters-collapse {
+    padding-left: 53px;
+}
+
+.phone-button {
+    margin: 20px 0;
+}
+
+ol.ordered-list {
+    list-style-type: upper-roman;
+}
+
+.instruction {
+    padding: 10px 70px 10px 10px;
+    text-align: left;
+}
+
+.ordered-list {
+    margin-left: 40px;
+}
+
+.instructions-container {
+    padding: 20px 0;
+}
+
+.saved-container {
+    min-height: 574px;
+}
+
+.save-recipe {
+    border-top: 1px solid darkgrey;
+    height: fit-content;
+    padding: 20px 0;
+    background-color: gainsboro;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+/*SCROLL BAR*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+
+    background: #555;
+}
+
+.navbar-collapse {
+    text-align: center;
+}
+
+.logo {
+    text-align: center;
+}
+
+.recipe-info-img {
+    padding: 30px 30px 20px 30px;
+}
+
+.recipe-info-page {
+    font-size: 1.2rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1px 12px;
+    width: fit-content;
+    height: fit-content;
+
+}
+
+.recipe-info-row {
+    justify-content: center;
+
+}
+
+@media (max-width: 1024px) {
+    .navbar-search-bar {
+        display: none;
+    }
+}
+
+@media (max-width: 475px) {
+    .navbar-home-button {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .navbar-brand {
+        padding-top: 14px;
+    }
+
+    .login, .create-account {
+    }
+}
+
+#sort:hover {
+    background-color: #616161;
+}
+
+.toggle {
+    left: -11px;
+    font-family: 'Quicksand', sans-serif;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 72px;
+    height: 32px;
+    display: inline-block;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #616161;
+    transition: background-color ease 0.3s;
+
+}
+
+.toggle:before {
+    content: "min max";
+    display: block;
+    position: absolute;
+    z-index: 2;
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    font: 12px/28px 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-indent: -30px;
+    word-spacing: 34px;
+    color: #fff;
+    text-shadow: -1px -1px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+    letter-spacing: 1px;
+
+}
+
+.toggle:checked {
+    background-color: #8aae92;
+}
+
+.toggle:checked:before {
+    left: 42px;
+}
+
+.no-recipes-button {
+    font-size: 150%;
+}
+
+.search-bar-repaired:focus {
+    color: #403f48;
+    border-color: #8aae92;
+    box-shadow: 0 0 0 0.2rem rgba(64, 63, 72, 0.6)
+}
+
+#sort-text {
+    padding: 4px;
+    right: 10px;
+    POSITION: relative;
+    top: -10px;
+}
+

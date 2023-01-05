@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %} Smart Fridge {% endblock %}
+
+{% block content %}
+    <div class="container search-results">
+        <div class="container-fluid search-container">
+            <div class="row">
+                {% for recipe in recipes %}
+                    <div class="col-12 col-md-6 col-lg-4 search-row">
+                        <div class="card card-deck search-results">
+                            <img class="card-img-top clickable" style="height: 261.587px"  src="{{ recipe['image'] }}" onclick="window.location.href='{{ url_for('views.to_add_recipe',todo="toShow" , id=recipe['recipe_id']) }}'">
+                            <div class="between"></div>
+                            <h2 class="recipe-title clickable" onclick="window.location.href='{{ url_for('views.to_add_recipe',todo="toShow" , id=recipe['recipe_id']) }}'">{{ recipe['title'] }}</h2>
+                            <div class="between"></div>
+                            <div class="recipe-all-info">
+                                <div class="row">
+                                    <h4 class="recipe-info">Servings: {{ recipe['servings'] }}</h4>
+                                </div>
+
+                                <div class="row" style="margin: 12px 12px">
+                                    <h4 class="recipe-info">Veggie:
+                                        {% if recipe.vegetarian == True %}
+                                        Yes
+                                        {% else %}
+                                        No
+                                        {% endif %}
+                                    </h4>
+                                    <h4 class="recipe-info">Gluten:
+                                    {% if recipe.gluten_free == True %}
+                                        Free
+                                        {% else %}
+                                        Exists
+                                        {% endif %}
+                                    </h4>
+                                </div>
+
+                                <div class="row" style="margin-bottom:20px">
+                                    <h4 class="recipe-info">Ready in: {{ recipe['ready_mins'] }} mins</h4>
+                                </div>
+                            </div>
+                            <div class="save-recipe">
+                                {% if current_user.is_anonymous %}
+                                    <button onclick="toLogin()" class="search-btn btn btn-primary"><img src="https://img.icons8.com/android/24/000000/plus.png" height='50' width='50'/></button>
+                                {% elif current_user.is_authenticated %}
+                                    {% if not recipe['recipe_id'] in saved_ids %}
+                                        <button onclick="window.location.href='{{ url_for('views.to_add_recipe',todo="toSave"  , id=recipe['recipe_id']) }}'" class="search-btn btn btn-primary">
+                                            <img src="https://img.icons8.com/android/24/000000/plus.png" height='50' width='50'/></button>
+                                    {% else %}
+                                        <button onclick="window.location.href='{{ url_for('views.remove_saved_recipe', id=recipe['recipe_id']) }}'" class="search-btn btn btn-primary">
+                                            <img src="{{ url_for('static', filename='img/trash.png') }}" height='50' width='50'/></button>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

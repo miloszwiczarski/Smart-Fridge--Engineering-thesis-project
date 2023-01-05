@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %} Smart Fridge {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <img class="recipe-info-img" src="{{ recipe.image }}" width="624" height="462">
+        <h1>{{ recipe.title }}</h1>
+        <div class="recipe-all-info">
+            <div class="row recipe-info-row" style="margin: 12px 0">
+                <h4 class="recipe-info-page">Veggie:
+                    {% if recipe.vegetarian == True %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}</h4>
+                <h4 class="recipe-info-page">Gluten:
+                    {% if recipe.gluten_free == True %}
+                        Free
+                    {% else %}
+                        Exists
+                    {% endif %}</h4>
+            </div>
+            <div class="row recipe-info-row" style="margin-bottom:12px">
+                <h4 class="recipe-info-page">Ready in: {{ recipe.ready_mins }} mins</h4>
+            </div>
+            <div class="row recipe-info-row">
+                <h4 class="recipe-info-page">Servings: {{ recipe.servings }}</h4>
+            </div>
+
+            {% if current_user.is_anonymous %}
+                <button onclick="toLogin()" class="search-btn btn btn-primary"><img
+                        src="https://img.icons8.com/android/24/000000/plus.png" height='50' width='50'/></button>
+            {% elif current_user.is_authenticated %}
+                {#<button onclick="window.location.href='{{ url_for('recipe_info', id=recipe['recipe_id']) }}'" class="search-btn btn btn-primary"><img src="https://img.icons8.com/android/24/000000/plus.png" height='50' width='50'/></button>#}
+                {% if not recipe.recipe_id in saved_ids %}
+                    <button onclick="window.location.href='{{ url_for('views.to_add_recipe',todo="toSave"  , id=recipe.recipe_id) }}'"
+                            class="search-btn save-button btn btn-primary">
+                        <img src="https://img.icons8.com/android/24/000000/plus.png" height='50' width='50'/></button>
+                {% else %}
+                    <button onclick="window.location.href='{{ url_for('views.remove_saved_recipe', id=recipe.recipe_id) }}'"
+                            class="search-btn btn btn-primary">
+                        <img src="{{ url_for('static', filename='img/trash.png') }}" height='50' width='50'/>
+                    </button>
+                {% endif %}
+
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 ingredient-container">
+                <h3 style="padding: 10px 0;">Ingredients:</h3>
+                {% for ingredient in recipe.ingredients %}
+                    <li class="ingredient-list">
+                        {% if ingredient.amount is divisibleby(1) %}
+                            {{ ingredient.amount | int }}
+                        {% else %}
+                            {{ ingredient.amount }}
+                        {% endif %}
+                        {% if ingredient.unit %}
+                            ({{ ingredient.unit }})
+                        {% endif %}
+                        {{ ingredient.name }}</li>
+                {% endfor %}
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class='missing-ingredients-container'>
+                    <img src="https://img.icons8.com/dusk/64/000000/ingredients.png" style="margin-top: 20px"
+                         height='50'
+                         width='50'/>
+                    <h3 style="margin: 10px 30px"> Currently missing ingredients </h3>
+                    <p style="margin-bottom: 13px"> Check the ingredients you'd like to add for a shopping list! </p>
+
+                    <form id='send-to-phone'
+                          action="{{ url_for('views.send_to_phone') }}" method="post">
+                        <div class="send-to-phone">
+                            {% for ingredient in recipe.missing_ingredients %}
+                                <div class="missing-ingredients-list" style="white-space: nowrap; display: flex;">
+                                    <input style="margin-right: 6px; width: 16px" type="checkbox"
+                                           id="ingredient-{{ loop.index0 }}" name="ingredient-{{ loop.index0 }}"
+                                           value="{% if ingredient.amount is divisibleby(1) %}{{ ingredient.amount | int }}{% else %}{{ ingredient.amount }}{% endif %}{% if ingredient.unit %} ({{ ingredient.unit }}){% endif %} {{ ingredient.name }}">
+                                    <label id='missing-ingredients-label' for="ingredient-{{ loop.index0 }}">
+                                        {% if ingredient.amount is divisibleby(1) %}
+                                            {{ ingredient.amount | int }}
+                                        {% else %}
+                                            {{ ingredient.amount }}
+                                        {% endif %}
+                                        {% if ingredient.unit %}
+                                            ({{ ingredient.unit }})
+                                        {% endif %}
+                                        {{ ingredient.name }}
+                                    </label><br>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                        {% if current_user.is_authenticated %}
+                            <button class="search-btn btn btn-primary phone-button" type="submit">
+                                <img style='margin-bottom: 5px;'
+                                     src="https://img.icons8.com/cotton/64/000000/checklist--v1.png"
+                                     height='30'
+                                     width='30'/>
+                                Send shopping list to phone!
+                            </button>
+                        {% endif %}
+
+
+                    </form>
+                    {% if current_user.is_anonymous %}
+                        <button class="search-btn btn btn-primary phone-button" onclick="toLogin()">
+                            <img style='margin-bottom: 5px;'
+                                 src="https://img.icons8.com/cotton/64/000000/checklist--v1.png"
+                                 height='30'
+                                 width='30'/>
+                            Send shopping list to phone!
+                        </button>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        <div class="instructions-container">
+            <h3 style="text-align: center">Instructions:</h3>
+            {% if not recipe.instructions %}
+                <p style="padding-top: 15px;">Sorry, we cannot find instructions for this recipe. </p>
+            {% endif %}
+            <div class="instructions-list">
+                <ol class="ordered-list">
+                    {% for instruction in recipe.instructions %}
+                        <li class="instruction">{{ instruction.step_instruction }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+

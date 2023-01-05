@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %} Smart Fridge {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="about about-logo logo col"><img src="https://img.icons8.com/cotton/64/000000/fridge.png" width="60" height="60" class="fridg-logo d-inline-block">
+                <h1>Smart Fridge </h1></div>
+        </div>
+        <div class="about about-row row">
+            <div class="col-12 col-md-6 col-lg-6 search-row">
+                <div class="me-img row">
+                    <div class="about me-img col">
+                        <div class="row">
+                            <div class="col"><img src="{{ url_for('static', filename='img/me.jpg') }}" alt="photo of me" style="width: 350px;padding-top: 11px"></div>
+                        </div>
+                        <div class="contact row"><img src="https://img.icons8.com/cotton/64/000000/secured-letter--v3.png" height="30" width="30" style="
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 30px;
+"> m.wiczarski@wp.pl
+                        </div>
+                        <div class="contact row"><img src="{{ url_for('static', filename='img/LinkedIn-logo.png') }}" height="30" width="30" style="
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 30px;
+"> in/miłoszwiczarski
+                        </div>
+                        <div class="contact row"><img src="{{ url_for('static', filename='img/GitHub-logo.png') }}" height="30" width="30" style="
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 30px;
+"> /miloszwiczarski
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 search-row">
+                <div class="about me col">
+                    <div class="fade show rest-collapse collapse" id="rest-collapse-id">
+                        <h3> Hi! Welcome to Smart Fridge!</h3>
+                        <h5 style="padding: 20px 0"> My name is Miłosz and I’m a new software engineer!</h5>
+                        <p> As a Python programmer and a student studying Computer Science in Gdynia, Poland, I have a strong foundation in the Python programming language and am constantly learning
+                            and improving my skills. </p>
+                        <p>I am passionate about using my skills to solve problems and create innovative software programs, and I am excited to be learning and growing in a new and exciting
+                            environment.</p>
+                        <p>One of my recent projects is "Smart Fridge", a web application that helps users search for recipes based on the ingredients they have on hand. I am proud of this project and
+                            believe it has the potential to make a meaningful impact in people's kitchens!</p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="about col" style="margin: 0 20px 5px 20px;"><p>Smart Fridge is a web application that helps users search for recipes based on the ingredients they have on hand. It was
+                developed using Python, Flask, SQLAlchemy, HTML, CSS, JavaScript, and Bootstrap. The Spoonacular API is used to find ingredient-based recipes, while the Twilio API allows users to send
+                a shopping list of missing ingredients to their phone. Users have the option to log in, create a new account, or continue as a guest. If they choose to continue as a guest, they can
+                log in or sign up later using a modal window. Once logged in, users can access their saved recipes, search results, and the log out option. Users and guests can search for recipes
+                using the provided ingredients, and the app will fetch data from the backend and the Spoonacular API to return the best matching recipes. Users can also save recipes and send a
+                shopping list to their phone, but guests will need to log in or create an account to do so. Users can also remove saved recipes from their list.</p></div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %} Smart Fridge {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="homepage logo col"><img src="{{ url_for('static', filename='img/fridge_logo.png') }}" width="60"
+                                                height="60" class="fridg-logo d-inline-block">
+                <h1>Smart Fridge </h1><br><h4>No ingredient left behind</h4></div>
+        </div>
+        <div class="row">
+            <div class="homepage-title homepage col"><h1 class="homepage-title"> Welcome! What's in your fridge? </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="homepage-search homepage col"
+                    {% if current_user.is_authenticated %}
+                 style="margin-bottom: 70px"
+                    {% endif %}
+            >
+                <form action="{{ url_for('views.search_recipe') }}" method="post"
+                        {% if current_user.is_authenticated %}
+                      style="margin-bottom: 70px"
+                        {% endif %}
+                >
+                    <div class="search-bar">
+                        <input style="margin-bottom: 20px" placeholder="e.g. beef, potato" type="text"
+                               class="search-bar form-control" name="ingredients" id="ingredients"
+                        >
+                        <button type="submit" class="search-btn btn btn-primary">Let's get cookin!</button>
+                    </div>
+                    <button onclick="searchCollapse()"
+                            style="width: 38px;padding-left: 6px;padding-right: 6px;height: 38px;" type='button'
+                            id="search-collapse-button"
+                            class="search-btn btn btn-primary"><i class="fa-solid fa-gear"></i></button>
+                    <div class="collapse search-parameters-collapse" id="search-parameters-collapse">
+                        <a id="sort-text">Max used ingredients</a>
+                        <input class="toggle" type="checkbox" name="sort" id=sort"
+                               value="min-missing-ingredients"/>
+                        <a id="sort-text">Min missing ingredients</a>
+                    </div>
+
+                    {#                        <input class="toggle search-btn btn btn-primary" type="checkbox"/>#}
+                    {#                        <button type='button' class="search-btn btn btn-primary">gluten_free</button>#}
+                    {#                        <button type='button' class="search-btn btn btn-primary">test3</button>#}
+                    {#                    </div>#}
+                </form>
+            </div>
+            <br>
+        </div>
+        {% if current_user.is_anonymous %}
+            <div class="container-fluid">
+                <div class="user-auth-row row">
+                    <div class="login-col homepage col">
+                        <div class="login" style="display: block;">
+                            <form action="{{ url_for('views.login') }}" class="login-form" method="post">
+                                <h3> Log in to see your saved recipes! </h3>
+                                <br>
+                                <label><img src="{{ url_for('static', filename='img/letter.png') }}" height="25"
+                                            width="25">Email:</label>
+                                {{ login_form.email(class="email form-control") }}
+                                <br>
+                                <label><img src="{{ url_for('static', filename='img/lock.png') }}" height="25"
+                                            width="25"> Password:</label>
+                                {{ login_form.password(class="password form-control") }}
+                                <br>
+                                {{ login_form.submit(class='login-btn btn btn-success') }}
+                                {{ login_form.csrf_token }}
+                            </form>
+                        </div>
+                        <div class="homepage-create-account homepage" style="display: block;">Don't have an account?<br>
+                            <button style="margin-bottom: 40px" aria-expanded="false"
+                                    aria-controls="create-account-collapse-id" class="btn btn-primary" type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#create-account-collapse-id">Create
+                                New Account!
+                            </button>
+                            <div class="create-account-collapse collapse" id="create-account-collapse-id">
+                                <div>
+                                    <div class="create-account">
+                                        <form action="{{ url_for('views.register') }}" class="create-account-form"
+                                              method="post">
+                                            <h4> Create a new account to start saving recipes! </h4>
+                                            <label><img src="{{ url_for('static', filename='img/letter.png') }}"
+                                                        height="25" width="25"> Email:</label>
+                                            {{ register_form.email(class="email form-control") }}
+                                            <br>
+                                            <label><img src="{{ url_for('static', filename='img/lock.png') }}"
+                                                        height="25" width="25"> Password:</label>
+                                            {{ register_form.password(class="password form-control") }}
+
+                                            <br>
+                                            <label><img src="{{ url_for('static', filename='img/phone.png') }}"
+                                                        height="25" width="25"> Phone:</label>
+                                            {{ register_form.number(class="phone form-control") }}
+
+                                            <br>
+                                            {{ register_form.submit(class="create-account-btn btn btn-success") }}
+                                            {{ login_form.csrf_token }}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
