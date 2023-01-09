@@ -36,11 +36,11 @@ def get_user_number(email):
 
 # ***** Saved Recipe class crud functions *****
 
-def save_a_recipe(user, recipe, is_favorite):
+def save_a_recipe(user, recipe):
     """Saves a recipe user picked."""
 
     # Instantiate a saved recipe
-    saved_recipe = Saved_Recipe(user_id=user, recipe_id=recipe, favorite=is_favorite)
+    saved_recipe = Saved_Recipe(user_id=user, recipe_id=recipe)
 
     # add to database
     db.session.add(saved_recipe)
@@ -83,45 +83,6 @@ def get_a_saved_recipe(recipe_id, email):
                                                   Instructions).first()
 
     return saved_recipe
-
-
-def update_tried(saved_recipe, tried):
-    """Add/update user's tried."""
-
-    saved_recipe.tried = tried
-    db.session.commit()
-
-    return saved_recipe
-
-
-def update_comment(saved_recipe, comment):
-    """Add/update user's comment."""
-
-    saved_recipe.comment = comment
-    db.session.commit()
-
-    return saved_recipe
-
-
-def update_rating(saved_recipe, rating):
-    """Add/update user's rating."""
-
-    saved_recipe.rating = rating
-    db.session.commit()
-
-    return saved_recipe
-
-
-def favorite_a_recipe(recipe_id, email):
-    """Favorite a saved recipe from db."""
-
-    favorited_recipe = Saved_Recipe.query.filter(Saved_Recipe.recipe_id == recipe_id, User.email == email).join(
-        User).first()
-    favorited_recipe.favorite = True
-
-    db.session.commit()
-
-    return
 
 
 # ***** Recipe class crud functions *****
