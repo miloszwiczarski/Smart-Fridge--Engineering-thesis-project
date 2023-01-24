@@ -75,7 +75,7 @@
                           action="{{ url_for('views.send_to_phone') }}" method="post">
                         <div class="send-to-phone">
                             {% for ingredient in recipe.missing_ingredients %}
-                                <div class="missing-ingredients-list" style="white-space: nowrap; display: flex;">
+                                <div class="missing-ingredients-list" style="display: flex;">
                                     <input style="margin-right: 6px; width: 16px" type="checkbox"
                                            id="ingredient-{{ loop.index0 }}" name="ingredient-{{ loop.index0 }}"
                                            value="{% if ingredient.amount is divisibleby(1) %}{{ ingredient.amount | int }}{% else %}{{ ingredient.amount }}{% endif %}{% if ingredient.unit %} ({{ ingredient.unit }}){% endif %} {{ ingredient.name }}">
