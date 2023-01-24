@@ -360,7 +360,7 @@ def save_recipe():
     # if selected recipe NOT in saved, or user's saved recipes is empty
     print('\nselected recipe NOT in db, or user\'s saved recipes is empty\n')
     user = get_user_by_email(current_user.email)
-    save_a_recipe(user=user.user_id, recipe=recipe_id, is_favorite=False)
+    save_a_recipe(user=user.user_id, recipe=recipe_id)
     flash(u'Recipe saved!', "success")
 
     return '<script>document.location.href = document.referrer</script>'
