@@ -37,10 +37,6 @@ class Saved_Recipe(db.Model):
                           db.ForeignKey('recipes.recipe_id'))
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.user_id'))
-    favorite = db.Column(db.Boolean)
-    tried = db.Column(db.Boolean)
-    rating = db.Column(db.Integer)
-    comment = db.Column(db.String)
 
     # recipe that was saved
     recipe = db.relationship('Recipe', lazy='joined')
@@ -54,10 +50,6 @@ class Saved_Recipe(db.Model):
         return {'saved_id': self.saved_id,
                 'recipe_id': self.recipe_id,
                 'user_id': self.user_id,
-                'favorite': self.favorite,
-                'tried': self.tried,
-                'rating': self.rating,
-                'comment': self.comment,
                 'recipe': self.recipe,
                 'user': self.user}
 
