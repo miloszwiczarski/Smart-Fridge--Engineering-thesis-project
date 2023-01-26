@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import path
+from os import path, environ
 from flask_login import LoginManager
 from jinja2 import StrictUndefined
 
@@ -14,7 +14,7 @@ def create_app():
 
     app.jinja_env.undefined = StrictUndefined
 
-    app.config['SECRET_KEY'] = 'any-secret-key-you-choose'
+    app.config['SECRET_KEY'] = environ["FLASK_KEY"]
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
